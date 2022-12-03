@@ -18,7 +18,7 @@ namespace Advent_of_Code_2021 {
 		private const string leaderboardURI = "{0}/leaderboard/private/view/{1}.json";
 		private static Dictionary<string,List<string>> conf;
 		
-		private static string puzzleNum = "2";
+		private static string puzzleNum = "3";
 
 		static void Main(string[] args) {
 			string path = Path.GetFullPath("./../../../inputs/config.json");
@@ -52,12 +52,12 @@ namespace Advent_of_Code_2021 {
 					input = input.Substring(0, input.Length - 1); //stupid trailing newline
 				//string input = @"";
 				DateTime s = DateTime.Now;
-				long result = DayTwo.Part1(input);
+				long result = DayThree.Part1(input);
 				DateTime e = DateTime.Now;
 				Console.WriteLine(result);
 				Console.WriteLine("Time: " + (e - s).TotalMilliseconds);
 				s = DateTime.Now;
-				result = DayTwo.Part2(input);
+				result = DayThree.Part2(input);
 				e = DateTime.Now;
 				Console.WriteLine(result);
 				Console.WriteLine("Time: " + (e - s).TotalMilliseconds);
@@ -66,7 +66,7 @@ namespace Advent_of_Code_2021 {
 				//Console.ReadKey();
 			}
 			
-			Console.Read();
+			//Console.Read();
 		}
 
 		static void BuildLeaderboard() {
