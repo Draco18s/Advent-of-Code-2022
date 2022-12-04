@@ -7,7 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
-using System.Text.Json;
+//using System.Text.Json;
 using System.Threading.Tasks;
 using Draco18s.AoCLib;
 
@@ -18,7 +18,7 @@ namespace Advent_of_Code_2021 {
 		private const string leaderboardURI = "{0}/leaderboard/private/view/{1}.json";
 		private static Dictionary<string,List<string>> conf;
 		
-		private static string puzzleNum = "3";
+		private static string puzzleNum = "4";
 
 		static void Main(string[] args) {
 			string path = Path.GetFullPath("./../../../inputs/config.json");
@@ -27,7 +27,7 @@ namespace Advent_of_Code_2021 {
 				Console.WriteLine("Create config file");
 				conf = new Dictionary<string, List<string>>();
 				conf.Add("sessionID", new List<string>(new string[] { "leaderboard" }));
-				string dat = JsonSerializer.Serialize<Dictionary<string, List<string>>>(conf);
+				string dat = System.Text.Json.JsonSerializer.Serialize<Dictionary<string, List<string>>>(conf);
 				StreamWriter writer = File.CreateText(path);
 				writer.Write(dat);
 				writer.Flush();
@@ -35,7 +35,7 @@ namespace Advent_of_Code_2021 {
 				return;
 			}
 			string confj = File.ReadAllText(path);
-			conf = JsonSerializer.Deserialize<Dictionary<string,List<string>>>(confj);
+			conf = System.Text.Json.JsonSerializer.Deserialize<Dictionary<string,List<string>>>(confj);
 
 			string p = Path.GetFullPath(string.Format("./../../../inputs/day{0}.txt", puzzleNum));
 			if(!File.Exists(p)) {
@@ -52,21 +52,21 @@ namespace Advent_of_Code_2021 {
 					input = input.Substring(0, input.Length - 1); //stupid trailing newline
 				//string input = @"";
 				DateTime s = DateTime.Now;
-				long result = DayThree.Part1(input);
+				long result = DayFour.Part1(input);
 				DateTime e = DateTime.Now;
 				Console.WriteLine(result);
 				Console.WriteLine("Time: " + (e - s).TotalMilliseconds);
 				s = DateTime.Now;
-				result = DayThree.Part2(input);
+				result = DayFour.Part2(input);
 				e = DateTime.Now;
 				Console.WriteLine(result);
 				Console.WriteLine("Time: " + (e - s).TotalMilliseconds);
-				//Console.ReadKey();
-				//BuildLeaderboard();
-				//Console.ReadKey();
+				Console.ReadKey();
+				BuildLeaderboard();
+				Console.ReadKey();
 			}
 			
-			//Console.Read();
+			Console.Read();
 		}
 
 		static void BuildLeaderboard() {
@@ -77,13 +77,24 @@ namespace Advent_of_Code_2021 {
 					List<string> boards = conf[k];
 					foreach(string b in boards) {
 						string input = await GetFromAsync(string.Format(leaderboardURI,year,b), k);
-						obj = JsonSerializer.Deserialize<AoCLeaderboard>(input);
-						foreach(AoCUser u in obj.members.Values) {
-							if(u.name == null) {
-								u.name = "(anonymous user #" + u.id + ")";
+						//string input = Path.GetFullPath("./../../../inputs/lb.txt");
+						try
+						{
+							obj = Newtonsoft.Json.JsonConvert.DeserializeObject<AoCLeaderboard>(input);
+							//obj = JsonSerializer.Deserialize<AoCLeaderboard>(input);
+							foreach (AoCUser u in obj.members.Values)
+							{
+								if (u.name == null)
+								{
+									u.name = "(anonymous user #" + u.id + ")";
+								}
+								if (u.id.Equals("1081403") || users.Contains(u)) continue;
+								users.Add(u);
 							}
-							if(u.id.Equals("1081403") || users.Contains(u)) continue;
-							users.Add(u);
+						}
+						catch(Exception e)
+						{
+							Console.WriteLine(e);
 						}
 					}
 				}
@@ -95,13 +106,14 @@ namespace Advent_of_Code_2021 {
 					builder.Append(GetTableRow(users, d));
 				}
 				builder.Append(GetTableRowScores(users));
-				string htmlTemplate = File.ReadAllText(Path.GetFullPath("inputs/leaderboard_html.txt"));
+				string htmlTemplate = File.ReadAllText(Path.GetFullPath("./../../../inputs/leaderboard_html.txt"));
 				htmlTemplate = htmlTemplate.Replace("{", "{{").Replace("}", "}}").Replace("{{0}}", "{0}");
-				string outputFile = Path.GetFullPath("leaderboard.html");
+				string outputFile = Path.GetFullPath("./../../../leaderboard.html");
 				if(File.Exists(outputFile)) {
 					File.Delete(outputFile);
 				}
 				File.WriteAllText(outputFile, string.Format(htmlTemplate, string.Format(mainTable, builder.ToString())));
+				Console.WriteLine("Finished writing leaderboard.");
 			});
 		}
 

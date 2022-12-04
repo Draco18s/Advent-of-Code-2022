@@ -10,6 +10,7 @@ namespace Advent_of_Code_2020.StatsBuilder {
 			}
 		}
 
+		public int star_index { get; set; }
 		public long get_star_ts { get; set; }
 
 		public static DateTime UnixTimeStampToDateTime(double unixTimeStamp) {
