@@ -11,14 +11,14 @@ using System.Text;
 using System.Threading.Tasks;
 using Draco18s.AoCLib;
 
-namespace Advent_of_Code_2021 {
+namespace AdventofCode2022 {
 	static class Program {
 		private const string year = "2022";
 		private static readonly Uri baseAddress = new Uri("https://adventofcode.com");
 		private const string leaderboardURI = "{0}/leaderboard/private/view/{1}.json";
 		private static Dictionary<string,List<string>> conf;
 		
-		private static string puzzleNum = "4";
+		private static string puzzleNum = "7";
 
 		static void Main(string[] args) {
 			string path = Path.GetFullPath("./../../../inputs/config.json");
@@ -52,18 +52,16 @@ namespace Advent_of_Code_2021 {
 					input = input.Substring(0, input.Length - 1); //stupid trailing newline
 				//string input = @"";
 				DateTime s = DateTime.Now;
-				long result = DayFour.Part1(input);
+				long result = DaySeven.Part1(input);
 				DateTime e = DateTime.Now;
 				Console.WriteLine(result);
 				Console.WriteLine("Time: " + (e - s).TotalMilliseconds);
 				s = DateTime.Now;
-				result = DayFour.Part2(input);
+				result = DaySeven.Part2(input);
 				e = DateTime.Now;
 				Console.WriteLine(result);
 				Console.WriteLine("Time: " + (e - s).TotalMilliseconds);
-				Console.ReadKey();
 				BuildLeaderboard();
-				Console.ReadKey();
 			}
 			
 			Console.Read();

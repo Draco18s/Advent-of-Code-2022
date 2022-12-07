@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Advent_of_Code_2021
+namespace AdventofCode2022
 {
 	internal static class DayFour
 	{

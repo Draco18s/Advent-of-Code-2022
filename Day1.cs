@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Advent_of_Code_2021 {
+namespace AdventofCode2022 {
 	internal static class DayOne {
 		internal static long Part1(string input) {
 			string[] lines = input.Split('\n');
