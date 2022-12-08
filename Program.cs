@@ -18,7 +18,7 @@ namespace AdventofCode2022 {
 		private const string leaderboardURI = "{0}/leaderboard/private/view/{1}.json";
 		private static Dictionary<string,List<string>> conf;
 		
-		private static string puzzleNum = "7";
+		private static string puzzleNum = "8";
 
 		static void Main(string[] args) {
 			string path = Path.GetFullPath("./../../../inputs/config.json");
@@ -52,12 +52,12 @@ namespace AdventofCode2022 {
 					input = input.Substring(0, input.Length - 1); //stupid trailing newline
 				//string input = @"";
 				DateTime s = DateTime.Now;
-				long result = DaySeven.Part1(input);
+				long result = DayEight.Part1(input);
 				DateTime e = DateTime.Now;
 				Console.WriteLine(result);
 				Console.WriteLine("Time: " + (e - s).TotalMilliseconds);
 				s = DateTime.Now;
-				result = DaySeven.Part2(input);
+				result = DayEight.Part2(input);
 				e = DateTime.Now;
 				Console.WriteLine(result);
 				Console.WriteLine("Time: " + (e - s).TotalMilliseconds);
