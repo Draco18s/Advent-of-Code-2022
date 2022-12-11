@@ -6,6 +6,7 @@ https://adventofcode.com/2022/
 ```
       --------Part 1--------   --------Part 2--------
 Day       Time   Rank  Score       Time   Rank  Score
+ 11   00:28:17   1471      0   01:22:13   4056      0
  10   00:07:07    359      0   00:16:08    348      0
   9   00:14:46    940      0   00:18:45    315      0
   8   00:12:43   1365      0   00:22:05   1093      0
@@ -23,3 +24,4 @@ Day       Time   Rank  Score       Time   Rank  Score
 *Day 4: Started (14 min) late because I was distracted by Slipways*
 *Day 5: I accidentally did part 2 for part 1 first (and had a few bugs in said).*
 *Day 6: Lost about 30-45 seconds attempting an aproach that I abandoned as soon as I realized it was going to take longer than the method I went with in the end.*
+*Day 11: Instructions were vauge about how to keep the numbers rational. I had the right idea at first, but due to the example data being what it was and because I was looking at the final values at the end in sorted order (not monkey order) I thought I was getting the wrong answer.*
