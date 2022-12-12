@@ -6,6 +6,7 @@ https://adventofcode.com/2022/
 ```
       --------Part 1--------   --------Part 2--------
 Day       Time   Rank  Score       Time   Rank  Score
+ 12   01:10:40   4975      0   02:02:41   6673      0
  11   00:28:17   1471      0   01:22:13   4056      0
  10   00:07:07    359      0   00:16:08    348      0
   9   00:14:46    940      0   00:18:45    315      0
@@ -25,3 +26,4 @@ Day       Time   Rank  Score       Time   Rank  Score
 *Day 5: I accidentally did part 2 for part 1 first (and had a few bugs in said).*
 *Day 6: Lost about 30-45 seconds attempting an aproach that I abandoned as soon as I realized it was going to take longer than the method I went with in the end.*
 *Day 11: Instructions were vauge about how to keep the numbers rational. I had the right idea at first, but due to the example data being what it was and because I was looking at the final values at the end in sorted order (not monkey order) I thought I was getting the wrong answer.*
+*Day 12: There's no reason this should have taken me this long. Part 2, especially. I legitimately have no idea why part 2's initial attempt failed. Part 1 I overlooked that you could drop down distances further than 1 height unit and rewrote the pathfinder three times as a result.*

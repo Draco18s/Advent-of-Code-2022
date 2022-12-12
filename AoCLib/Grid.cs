@@ -275,7 +275,7 @@ namespace Draco18s.AoCLib {
 			//(int)Math.Log(cells.Max())+1;
 			for(int y = 0; y < height; y++) {
 				for(int x = 0; x < width; x++) {
-					sb.Append(this[x,y,false].ToString().PadLeft(pad,' '));
+					sb.Append(this[x,y,false].ToString().PadLeft(5,' '));
 				}
 				sb.Append('\n');
 			}
