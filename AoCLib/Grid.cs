@@ -76,6 +76,35 @@ namespace Draco18s.AoCLib {
 			return cells.GetLength(i);
 		}
 
+		internal bool IsInside(Vector2 p1)
+		{
+			if (p1.x < MinX || p1.x >= MaxX) return false;
+			if (p1.y < MinY || p1.y+2 >= MaxY) return false;
+			return true;
+		}
+
+		internal void IncreaseGridToInclude(Vector2 p1, EdgeHandler edgeHandler)
+		{
+			int dx=0, dy=0;
+			if(p1.x < MinX)
+			{
+				dx = -Math.Abs(MinX - p1.x)-1;
+			}
+			if (p1.x >= MaxX)
+			{
+				dx = Math.Abs(p1.x - MaxX)+1;
+			}
+			if (p1.y < MinX)
+			{
+				dy = -Math.Abs(MinY - p1.y)-1;
+			}
+			if (p1.y >= MaxX)
+			{
+				dy = Math.Abs(p1.y - MaxY)+1;
+			}
+			IncreaseGridBy(dx, dy, edgeHandler);
+		}
+
 		///<summary>
 		/// Increases the grid in the positive direction if parameters are positive and in the negative
 		/// direction if parameters are negative. The value accessed at this[0,0] remains the same.
@@ -413,6 +442,20 @@ namespace Draco18s.AoCLib {
 				}
 			}
 			return ret;
+		}
+
+		private void FloodFill(int x, int y, EdgeHandler condition, EdgeHandler fillValue)
+		{
+			if (x < MinX || x >= MaxX) return;
+			if (y < MinY || y >= MaxY) return;
+			if (this[x, y, true] == condition())
+			{
+				this[x, y, true] = fillValue();
+				FloodFill(x + 1, y, condition, fillValue);
+				FloodFill(x - 1, y, condition, fillValue);
+				FloodFill(x, y + 1, condition, fillValue);
+				FloodFill(x, y - 1, condition, fillValue);
+			}
 		}
 	}
 }

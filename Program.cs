@@ -13,12 +13,14 @@ using Draco18s.AoCLib;
 
 namespace AdventofCode2022 {
 	static class Program {
+		private const bool CUSTOM_LEADERBOARD = true;
+		private const float MAX_EXPECTED = 4f;
 		private const string year = "2022";
 		private static readonly Uri baseAddress = new Uri("https://adventofcode.com");
 		private const string leaderboardURI = "{0}/leaderboard/private/view/{1}.json";
 		private static Dictionary<string,List<string>> conf;
 		
-		private static string puzzleNum = "12";
+		private static string puzzleNum = "20";
 
 		static void Main(string[] args) {
 			#region config
@@ -56,12 +58,16 @@ namespace AdventofCode2022 {
 					input = input.Substring(0, input.Length - 1); //stupid trailing newline
 				//string input = @"";
 				DateTime s = DateTime.Now;
-					long result = DayTwelve.Part1(input);
+				
+				long result = DayTwenty.Part1(input);
+				
 				DateTime e = DateTime.Now;
 				Console.WriteLine(result);
 				Console.WriteLine("Time: " + (e - s).TotalMilliseconds);
 				s = DateTime.Now;
-					result = DayTwelve.Part2(input);
+				
+				//result = DayTwenty.Part2(input);
+				
 				e = DateTime.Now;
 				Console.WriteLine(result);
 				Console.WriteLine("Time: " + (e - s).TotalMilliseconds);
@@ -171,7 +177,7 @@ namespace AdventofCode2022 {
 				x =>
 				{
 					TimeSpan dur = x.completion_day_level[day]["1"].dateTime - start;
-					return dur.TotalHours <= 2;
+					return dur.TotalHours <= MAX_EXPECTED;
 				}).Average(x => (x.completion_day_level[day]["1"].dateTime - start).TotalSeconds);
 			TimeSpan averageTime = new TimeSpan(0, 0, (int)avg);
 
@@ -214,7 +220,7 @@ namespace AdventofCode2022 {
 				x =>
 				{
 					TimeSpan dur = x.completion_day_level[day]["1"].dateTime - start;
-					return dur.TotalHours <= 2;
+					return dur.TotalHours <= MAX_EXPECTED;
 				}).Average(x => (x.completion_day_level[day]["1"].dateTime - start).TotalSeconds);
 			TimeSpan averageTime = new TimeSpan(0, 0, (int)avg);
 
@@ -230,10 +236,12 @@ namespace AdventofCode2022 {
 				}
 				if (xhas && yhas)
 				{
+					if(!CUSTOM_LEADERBOARD)
+						return x.completion_day_level[day][part].dateTime.CompareTo(y.completion_day_level[day][part].dateTime);
 					if (part == "1")
 					{
 						TimeSpan xDur, yDur;
-						if((x.completion_day_level[day][part].dateTime - start).TotalHours > 2)
+						if((x.completion_day_level[day][part].dateTime - start).TotalHours > MAX_EXPECTED)
 						{
 							DateTime s = (x.completion_day_level[day][part].dateTime - averageTime);
 							int extra = s.Minute % 15;
@@ -244,7 +252,7 @@ namespace AdventofCode2022 {
 						{
 							xDur = (x.completion_day_level[day][part].dateTime - start);
 						}
-						if ((y.completion_day_level[day][part].dateTime - start).TotalHours > 2)
+						if ((y.completion_day_level[day][part].dateTime - start).TotalHours > MAX_EXPECTED)
 						{
 							DateTime s = (y.completion_day_level[day][part].dateTime - averageTime);
 							int extra = s.Minute % 15;
@@ -283,10 +291,12 @@ namespace AdventofCode2022 {
 			string p = "<tr><td>{0}</td><td>{1}</td><td class=\"n\">{2}</td></tr>";
 			if (user.completion_day_level.ContainsKey(day) && user.completion_day_level[day].ContainsKey(part))
 			{
-				if(part == "1")
+				if(!CUSTOM_LEADERBOARD)
+					return string.Format(p, user.name, user.completion_day_level[day][part].dateTime.ToString("M/d/yyyy h:mm:ss tt"), pts);
+				if (part == "1")
 				{
 					TimeSpan yDur;
-					if ((user.completion_day_level[day][part].dateTime - start).TotalHours > 2)
+					if ((user.completion_day_level[day][part].dateTime - start).TotalHours > MAX_EXPECTED)
 					{
 						DateTime s = (user.completion_day_level[day][part].dateTime - averageTime);
 						int extra = s.Minute % 15;
@@ -299,7 +309,6 @@ namespace AdventofCode2022 {
 					}
 					return string.Format(p, user.name, yDur.ToString(), pts);
 				}
-					//return string.Format(p, user.name, user.completion_day_level[day][part].dateTime.ToString("M/d/yyyy h:mm:ss tt"), pts);
 				TimeSpan dur = (user.completion_day_level[day]["2"].dateTime - user.completion_day_level[day]["1"].dateTime);
 				return string.Format(p, user.name, dur.ToString(), pts);
 			}

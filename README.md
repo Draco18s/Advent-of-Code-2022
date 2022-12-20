@@ -6,6 +6,14 @@ https://adventofcode.com/2022/
 ```
       --------Part 1--------   --------Part 2--------
 Day       Time   Rank  Score       Time   Rank  Score
+ 20   04:47:01   5412      0   04:59:24   4816      0
+ 19          -      -      0          -      -      -
+ 18   00:12:00   1616      0   00:17:08    285      0
+ 17   00:56:19   1226      0          -      -      -
+ 16          -      -      0          -      -      -
+ 15   00:41:54   2519      0          -      -      -
+ 14   00:43:27   3185      0   00:56:29   3230      0
+ 13   01:01:29   4285      0   01:11:14   3897      0
  12   01:10:40   4975      0   02:02:41   6673      0
  11   00:28:17   1471      0   01:22:13   4056      0
  10   00:07:07    359      0   00:16:08    348      0
@@ -27,3 +35,5 @@ Day       Time   Rank  Score       Time   Rank  Score
 *Day 6: Lost about 30-45 seconds attempting an aproach that I abandoned as soon as I realized it was going to take longer than the method I went with in the end.*
 *Day 11: Instructions were vauge about how to keep the numbers rational. I had the right idea at first, but due to the example data being what it was and because I was looking at the final values at the end in sorted order (not monkey order) I thought I was getting the wrong answer.*
 *Day 12: There's no reason this should have taken me this long. Part 2, especially. I legitimately have no idea why part 2's initial attempt failed. Part 1 I overlooked that you could drop down distances further than 1 height unit and rewrote the pathfinder three times as a result.*
+*Days 15,16,17,19: These were just too intense for me. Oof.*
+*Day 20: Was playing Gunfire Reborn again, so progressed slowly through part 1. Eventually did a refactor over about a half hour that got me the right answers.*

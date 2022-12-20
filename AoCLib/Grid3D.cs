@@ -341,5 +341,22 @@ namespace Draco18s.AoCLib {
 			IncreaseGridBy(dx, dy, dz, null);
 			this[x,y,z] = val;
 		}
+
+		private void FloodFill(int x, int y, int z, EdgeHandler condition, EdgeHandler fillValue)
+		{
+			if (x < MinX || x >= MaxX) return;
+			if (y < MinY || y >= MaxY) return;
+			if (z < MinZ || z >= MaxZ) return;
+			if (this[x, y, z, true] == condition())
+			{
+				this[x, y, z, true] = fillValue();
+				FloodFill(x + 1, y, z, condition, fillValue);
+				FloodFill(x - 1, y, z, condition, fillValue);
+				FloodFill(x, y + 1, z, condition, fillValue);
+				FloodFill(x, y - 1, z, condition, fillValue);
+				FloodFill(x, y, z + 1, condition, fillValue);
+				FloodFill(x, y, z - 1, condition, fillValue);
+			}
+		}
 	}
 }
