@@ -20,7 +20,7 @@ namespace AdventofCode2022 {
 		private const string leaderboardURI = "{0}/leaderboard/private/view/{1}.json";
 		private static Dictionary<string,List<string>> conf;
 		
-		private static string puzzleNum = "20";
+		private static string puzzleNum = "22";
 
 		static void Main(string[] args) {
 			#region config
@@ -59,14 +59,14 @@ namespace AdventofCode2022 {
 				//string input = @"";
 				DateTime s = DateTime.Now;
 				
-				long result = DayTwenty.Part1(input);
+				long result = DayTwentytwo.Part1(input);
 				
 				DateTime e = DateTime.Now;
 				Console.WriteLine(result);
 				Console.WriteLine("Time: " + (e - s).TotalMilliseconds);
 				s = DateTime.Now;
 				
-				//result = DayTwenty.Part2(input);
+				result = DayTwentytwo.Part2(input);
 				
 				e = DateTime.Now;
 				Console.WriteLine(result);

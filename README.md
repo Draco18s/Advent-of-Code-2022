@@ -6,6 +6,8 @@ https://adventofcode.com/2022/
 ```
       --------Part 1--------   --------Part 2--------
 Day       Time   Rank  Score       Time   Rank  Score
+ 22   00:55:24   1371      0   03:56:35   1626      0
+ 21   00:56:15   4049      0   01:41:31   2981      0
  20   04:47:01   5412      0   04:59:24   4816      0
  19          -      -      0          -      -      -
  18   00:12:00   1616      0   00:17:08    285      0
@@ -37,3 +39,5 @@ Day       Time   Rank  Score       Time   Rank  Score
 *Day 12: There's no reason this should have taken me this long. Part 2, especially. I legitimately have no idea why part 2's initial attempt failed. Part 1 I overlooked that you could drop down distances further than 1 height unit and rewrote the pathfinder three times as a result.*
 *Days 15,16,17,19: These were just too intense for me. Oof.*
 *Day 20: Was playing Gunfire Reborn again, so progressed slowly through part 1. Eventually did a refactor over about a half hour that got me the right answers.*
+*Day 21: Inadvertently went down a rabbit hole.*
+*Day 22: Part 2 was a doozy. Converting to cublic coordinates ended up not being too bad (but errors lead me to doubting that math and repeatedly checking it). Ultimate problem ended up being the position of line 409 and the existence of 411-414. I had somehow convinced myself that I didn't actually have to check for valid movement after going around an edge any more...*

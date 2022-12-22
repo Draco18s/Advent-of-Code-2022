@@ -46,6 +46,12 @@ namespace Draco18s.AoCLib {
 			set => cells[X-(useOffset?offsetx:0),Y-(useOffset?offsety:0),Z-(useOffset?offsetz:0)] = value;
 		}
 
+		public int this[Vector3 p, bool useOffset = true]
+		{
+			get => this[p.x, p.y, p.z, useOffset];
+			set => this[p.x, p.y, p.z, useOffset] = value;
+		}
+
 		public int GetLength(int i) {
 			return cells.GetLength(i);
 		}
@@ -357,6 +363,77 @@ namespace Draco18s.AoCLib {
 				FloodFill(x, y, z + 1, condition, fillValue);
 				FloodFill(x, y, z - 1, condition, fillValue);
 			}
+		}
+
+		public override string ToString()
+		{
+			/*StringBuilder sb = new StringBuilder();
+			int pad = 0;
+			foreach (int y in cells)
+			{
+				pad = Math.Max(pad, y);
+			}
+			pad = (int)Math.Log(pad) + 1;
+			//(int)Math.Log(cells.Max())+1;
+			for (int y = 0; y < height; y++)
+			{
+				for (int x = 0; x < width; x++)
+				{
+					sb.Append(this[x, y, 0, false].ToString().PadLeft(5, ' '));
+				}
+				sb.Append('\n');
+			}
+			sb.Remove(sb.Length - 1, 1);*/
+			return ToString("char+0");
+		}
+		public string ToString(string format)
+		{
+			StringBuilder sb = new StringBuilder();
+			int pad = 0;
+			int max = int.MinValue;
+			foreach (int y in cells)
+			{
+				max = Math.Max(max, y);
+			}
+			pad = (int)Math.Log(max) + 1;
+			string numFormat = "";
+			//(int)Math.Log(cells.Max())+1;
+			if (format.Substring(0, 4) == "char")
+			{
+				if (format == "char") format += "+32";
+				int.TryParse(format.Substring(4, format.Length - 4), out int v);
+				for (int y = 0; y < height; y++)
+				{
+					for (int x = 0; x < width; x++)
+					{
+						int f = this[x, y, MaxZ, false] + v;
+						if (f < 32) f = 32;
+						sb.Append(((char)(f)).ToString());
+					}
+					sb.Append('\n');
+				}
+				sb.Remove(sb.Length - 1, 1);
+				return sb.ToString();
+			}
+			else if (format[0] == 'P' && int.TryParse(format.Substring(1, format.Length - 1), out int v))
+			{
+				pad = v;
+			}
+			else
+			{
+				numFormat = format;
+				pad = max.ToString(numFormat).Length + 1;
+			}
+			for (int y = 0; y < height; y++)
+			{
+				for (int x = 0; x < width; x++)
+				{
+					sb.Append(this[x, y, MaxZ, false].ToString(numFormat).PadLeft(pad, ' '));
+				}
+				sb.Append('\n');
+			}
+			sb.Remove(sb.Length - 1, 1);
+			return sb.ToString();
 		}
 	}
 }

@@ -28,7 +28,7 @@ namespace Draco18s.AoCLib {
 
 		public Grid(string input, bool asChar, char separator=(char)0, int offx=0, int offy=0) {
 			string[] lines = input.Split('\n');
-			width = lines[0].Length;
+			width = lines.Max(x => x.Length);
 			height = lines.Length;
 			offsetx = offx;
 			offsety = offy;
