@@ -72,6 +72,32 @@ namespace Draco18s.AoCLib {
 			set => this[p.x,p.y,useOffset] = value;
 		}
 
+		public int this[Vector2 p, bool useOffset, EdgeHandler edges]
+		{
+			get => this[p.x, p.y, useOffset, edges];
+			set => this[p.x, p.y, useOffset, edges] = value;
+		}
+
+		public int this[int X, int Y, bool useOffset, EdgeHandler edges]
+		{
+			get {
+				int xx = X - (useOffset ? offsetx : 0);
+				int yy = Y - (useOffset ? offsety : 0);
+				if (xx < 0 || xx >= this.Width || yy < 0 || yy >= this.Height) return edges();
+
+				return cells[xx, yy];
+			}
+			set {
+				int xx = X - (useOffset ? offsetx : 0);
+				int yy = Y - (useOffset ? offsety : 0);
+				if (xx < 0 || xx >= this.Width) return;
+				if (yy < 0 || yy >= this.Height) return;
+
+				cells[xx, yy] = value;
+			}
+		}
+
+
 		public int GetLength(int i) {
 			return cells.GetLength(i);
 		}
@@ -94,14 +120,15 @@ namespace Draco18s.AoCLib {
 			{
 				dx = Math.Abs(p1.x - MaxX)+1;
 			}
-			if (p1.y < MinX)
+			if (p1.y < MinY)
 			{
 				dy = -Math.Abs(MinY - p1.y)-1;
 			}
-			if (p1.y >= MaxX)
+			if (p1.y >= MaxY)
 			{
 				dy = Math.Abs(p1.y - MaxY)+1;
 			}
+
 			IncreaseGridBy(dx, dy, edgeHandler);
 		}
 
@@ -295,7 +322,7 @@ namespace Draco18s.AoCLib {
 		}
 
 		public override string ToString() {
-			StringBuilder sb = new StringBuilder();
+			/*StringBuilder sb = new StringBuilder();
 			int pad = 0;
 			foreach(int y in cells) {
 				pad = Math.Max(pad, y);
@@ -309,7 +336,8 @@ namespace Draco18s.AoCLib {
 				sb.Append('\n');
 			}
 			sb.Remove(sb.Length-1,1);
-			return sb.ToString();
+			return sb.ToString();*/
+			return ToString("char+0");
 		}
 		public string ToString(string format) {
 			StringBuilder sb = new StringBuilder();
