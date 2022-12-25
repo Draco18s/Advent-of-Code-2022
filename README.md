@@ -6,6 +6,7 @@ https://adventofcode.com/2022/
 ```
       --------Part 1--------   --------Part 2--------
 Day       Time   Rank  Score       Time   Rank  Score
+ 25   00:46:22   2015      0          -      -      -
  24   01:28:13   1666      0   01:36:36   1513      0
  23   01:20:20   2197      0   01:32:52   2232      0
  22   00:55:24   1371      0   03:56:35   1626      0
@@ -43,3 +44,4 @@ Day       Time   Rank  Score       Time   Rank  Score
 *Day 20: Was playing Gunfire Reborn again, so progressed slowly through part 1. Eventually did a refactor over about a half hour that got me the right answers.*
 *Day 21: Inadvertently went down a rabbit hole.*
 *Day 22: Part 2 was a doozy. Converting to cublic coordinates ended up not being too bad (but errors lead me to doubting that math and repeatedly checking it). Ultimate problem ended up being the position of line 409 and the existence of 411-414. I had somehow convinced myself that I didn't actually have to check for valid movement after going around an edge any more...*
+*Day 25: Little bit of a rabbit hole trying to convert to/from decimal before realizing that it was entirely unneeded.*
